@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:at_client/at_client.dart';
+import 'package:at_client/src/presence_service/presence_model.dart';
 import 'package:at_commons/at_builders.dart';
 import 'package:at_commons/at_commons.dart';
 import 'package:at_lookup/at_lookup.dart';
@@ -132,6 +133,13 @@ class AtClientUtil {
       return '${atKey.key}.${atClientPreference.namespace}';
     }
     return atKey.key!;
+  }
+
+  static PresenceStatus getStatusFromName(String status) {
+    if (status == 'available') {
+      return PresenceStatus.available;
+    }
+    return PresenceStatus.unavailable;
   }
 }
 
