@@ -1,14 +1,11 @@
-import 'dart:io';
 import 'package:at_client/at_client.dart';
-import 'package:at_client/src/manager/storage_manager.dart';
-import 'package:at_persistence_secondary_server/at_persistence_secondary_server.dart';
 import 'package:uuid/uuid.dart';
 import 'test_util.dart';
 
 void main() async {
-  final senderAtSign = '@sitaram';
-  final receiverAtSign = '@murali';
-  final clientPreference1 = TestUtil.getSitaramPreference();
+  final senderAtSign = '@alice';
+  final receiverAtSign = '@bob';
+  final clientPreference1 = TestUtil.getAlicePreference();
   await AtClientManager.getInstance()
       .setCurrentAtSign(senderAtSign, 'wavi', clientPreference1);
   var notifierId = await getNotifier();
