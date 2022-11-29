@@ -10,6 +10,13 @@ dependencies:
   at_client:
     path: ../../packages/at_client
 
+dependency_overrides:
+  at_commons:
+    git:
+      url: https://github.com/atsign-foundation/at_tools
+      path: packages/at_commons
+      ref: local_key_deletion
+
 dev_dependencies:
   test: ^1.21.4
   lints: ^2.0.0

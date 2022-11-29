@@ -199,7 +199,8 @@ class AtClientImpl implements AtClient {
         sharedBy: atKey.sharedBy,
         isPublic: isPublic,
         isCached: isCached,
-        namespaceAware: isNamespaceAware);
+        namespaceAware: isNamespaceAware,
+        isLocal: atKey.isLocal);
   }
 
   Future<bool> _delete(String key,
@@ -207,7 +208,8 @@ class AtClientImpl implements AtClient {
       String? sharedBy,
       bool isPublic = false,
       bool isCached = false,
-      bool namespaceAware = true}) async {
+      bool namespaceAware = true,
+      bool isLocal = false}) async {
     String keyWithNamespace;
     if (namespaceAware) {
       keyWithNamespace = _getKeyWithNamespace(key);
@@ -216,6 +218,7 @@ class AtClientImpl implements AtClient {
     }
     sharedBy ??= currentAtSign;
     var builder = DeleteVerbBuilder()
+      ..isLocal = isLocal
       ..isCached = isCached
       ..isPublic = isPublic
       ..sharedWith = sharedWith
