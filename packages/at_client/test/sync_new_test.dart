@@ -54,7 +54,6 @@ class FakeUpdateVerbBuilder extends Fake implements UpdateVerbBuilder {}
 /// 1. Create = A key does not exist previously and it is being newly created
 /// 2. Update = A key exists previously
 /// 3. Recreate = A key that exists previously got deleted and it is being created again
-
 void main() {
   // (Client) How items are added to the 'uncommitted' queue on the client side (upon data store operations)
   // (Client) How the client processes that uncommitted queue (while sending updates to server) - e.g. how is the queue ordered, how is it de-duped, etc
@@ -71,10 +70,10 @@ void main() {
     /// Preconditions:
     /// 1. There should be no entry for the same key in the key store
     /// 2. There should be no entry for the same key in the commit log
-
+    ///
     /// Operation:
     /// Put a public key
-
+    ///
     /// Assertions:
     /// 1. Key store should have the public key with the value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" should be populated with
@@ -110,11 +109,10 @@ void main() {
     /// 2. In the metadata of the key, the version should be set to 0
     /// and the "createdAt" field should be populated.
     /// 3. There should be an entry for the same key in the commit log
-
-    // Operation
+    /// Operation
     /// Update a public key
-    // updating the same key in the keystore with a different value
-    // Assertions :
+    /// updating the same key in the keystore with a different value
+    /// Assertions :
     /// 1. Key store should have the public key with the new value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" field should not be modified and
     /// "UpdatedAt" should be less than now().
@@ -160,11 +158,9 @@ void main() {
     /// Preconditions:
     /// 1. There should be an entry for the same key in the key store
     /// 2. There should be an entry for the same key in the commit log
-
-    //Operation
+    /// Operation
     /// Delete a public key
-
-    // Assertions :
+    /// Assertions :
     /// 1. Key store now should not have the entry of the key
     /// 2. CommitLog should have an entry for the deleted public key (commitOp.delete)
     test('Verify uncommitted queue on deletion of a public key', () async {
@@ -195,10 +191,10 @@ void main() {
     /// Preconditions:
     /// 1. There should be an entry for the same key in the key store
     /// 2. There should be an entry for the same key in the commit log
-
+    ///
     /// Operation
     /// Delete a key and insert the same key again
-
+    ///
     /// Assertions
     /// 1. Key store should have the public key with the new value inserted
     /// 2. CommitLog should have a following entries in sequence as described below
@@ -242,10 +238,10 @@ void main() {
     /// Preconditions:
     /// 1. There should be no entry for the same key in the key store
     /// 2. There should be no entry for the same key in the commit log
-
+    ///
     /// Operation
     /// Put a shared key
-
+    ///
     /// Assertions
     /// 1. Key store should have the shared key with the value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" should be populated with
@@ -290,7 +286,7 @@ void main() {
     ///
     /// Operation
     /// Update a shared key
-
+    ///
     /// Assertions
     /// 1. Keystore should have the shared key with the new value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" field should not be modified and
@@ -335,11 +331,9 @@ void main() {
     /// Preconditions
     /// 1. There should be an entry for the same key in the key store
     /// 2. There should be an entry for the same key in the commit log
-
-    // Operation
+    /// Operation
     /// Delete a shared key
-
-    // Assertions
+    /// Assertions
     /// 1. Keystore should not have the shared key
     /// 2. CommitLog should have an entry for the deleted shared key(commitOp.delete)
     test('Verify uncommitted queue on deletion of a shared key', () async {
@@ -370,11 +364,9 @@ void main() {
     /// Preconditions:
     /// 1. There should be an entry for the same key in the key store
     /// 2. There should be an entry for the same key in the commit log
-
-    // Operation
+    /// Operation
     /// Delete a key and insert the same key again
-
-    // Assertions :
+    /// Assertions :
     /// 1. Keystore should have the shared key with the new value inserted
     /// 2. CommitLog should have a following entries in sequence as described below
     ///     a. Commit entry with CommitOp.Delete
@@ -417,11 +409,9 @@ void main() {
     /// Preconditions:
     /// 1. There should be no entry for the same key in the key store
     /// 2. There should be no entry for the same key in the commit log
-
-    // Operation
+    /// Operation
     /// Put a self key
-
-    // Assertions :
+    /// Assertions :
     /// 1. Keystore should have the self key with the value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" should be populated with
     /// DateTime which is less than DateTime.now()
@@ -463,11 +453,9 @@ void main() {
     /// 2. There should be an entry for the same key in the commit log
     /// 3. In the metadata of the key, the version should be set to 0
     /// and the "createdAt" field should be populated.
-
-    //  Operation
+    ///  Operation
     /// Update a self key
-
-    //  Assertions :
+    ///  Assertions :
     /// 1. Keystore should have the self key with the new value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" field should not be modified and
     /// "UpdatedAt" should be less than now().
@@ -515,10 +503,9 @@ void main() {
     /// Preconditions:
     /// 1. There should be an entry for the same key in the key store
     /// 2. There should be an entry for the same key in the commit log
-    // Operation
+    /// Operation
     /// Delete a self key
-
-    // Assertions :
+    /// Assertions :
     /// 1. Keystore now should not have the entry of the key
     /// 2. CommitLog should have an entry for the deleted self key (commitOp.delete)
     test('Verify uncommitted queue on deletion of a self key', () async {
@@ -549,11 +536,9 @@ void main() {
     /// Preconditions:
     /// 1. There should be an entry for the same key in the key store
     /// 2. There should be an entry for the same key in the commit log
-
-    // Operation
+    /// Operation
     /// Delete a key and insert the same key again
-
-    // Assertions :
+    /// Assertions :
     /// 1. Keystore should have the self key with the new value inserted
     /// 2. CommitLog should have a following entries in sequence as described below
     ///     a. Commit entry with CommitOp.Delete
@@ -595,11 +580,9 @@ void main() {
     /// Preconditions
     /// 1. There should be no entry for the same key in the key store
     /// 2. There should be no entry for the same key in the commit log
-
-    // Operation
+    /// Operation
     /// Put a local key
-
-    // Assertions
+    /// Assertions
     /// 1. Keystore should have the local key with the value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" should be populated with
     /// DateTime which is less than DateTime.now()
@@ -636,11 +619,9 @@ void main() {
     /// 1. There should be an entry for the same key in the key store
     /// 2. In the metadata of the key, the version should be set to 0
     /// and the "createdAt" field should be populated.
-
-    // Operation
+    /// Operation
     /// Put a new value for an existing local key
-
-    // Assertions
+    /// Assertions
     /// 1. keystore should have the local key with the new value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" field should not be modified and
     /// "UpdatedAt" should be less than now().
@@ -683,11 +664,9 @@ void main() {
     /// Pre-conditions
     /// 1. There should be an entry for the same key in the key store
     /// 2. There should not be an entry for the same key in the commit log
-
-    // Operation
+    /// Operation
     /// Delete a local key
-
-    // Assertions
+    /// Assertions
     /// 1. Keystore should not have the local key
     /// 2. CommitLog should not have an entry for the deleted local key (commitOp.delete)
     test('Verify uncommitted queue on deletion of a local key', () async {
@@ -716,11 +695,9 @@ void main() {
 
     /// Preconditions:
     /// 1. There should be an entry for the same key in the key store
-
-    // Operation
+    /// Operation
     /// Delete a key and insert the same key again
-
-    // Assertions :
+    /// Assertions :
     /// 1. Keystore should have the local key with the new value inserted
     test('Verify uncommitted queue on re-creation of a local key', () async {
       //------------Setup---------------------------------
@@ -757,11 +734,9 @@ void main() {
     /// Preconditions
     /// 1. There should be no entry for the private encryption key in the key store
     /// 2. There should be no entry for the private encryption key in the commit log
-
-    // Operation
+    /// Operation
     /// Put a private encryption key
-
-    // Assertions
+    /// Assertions
     /// 1. Keystore should have the private encryption key with the value inserted
     /// 2. CommitLog should not have an entry for the private encryption key
     test('Verify uncommitted queue on creation of a private encryption key',
@@ -800,11 +775,9 @@ void main() {
 
     /// Preconditions
     /// 1. There should be no entry for the pkam private key in the key store
-
-    // Operation
+    /// Operation
     /// Put a pkam private key
-
-    // Assertions
+    /// Assertions
     /// 1. Keystore should have the pkam private key with the value inserted
     /// 2. CommitLog should not have an entry for the pkam private key
     test('Verify uncommitted queue on creation of a pkam private key',
@@ -840,12 +813,10 @@ void main() {
     /// Preconditions
     /// 1. There should be an entry for the public key in the key store
     /// 2. There should be an entry for the public key in the commit log
-
-    // Operation
+    /// Operation
     /// 1. Update a new value for an existing public key
     /// 2. Delete the public key
-
-    // Assertions
+    /// Assertions
     /// 1. Keystore should not have the public key
     /// 2. CommitLog should have only the latest entries:
     ///     a. CommitEntry for key with CommitOp.Delete
@@ -884,12 +855,10 @@ void main() {
     /// Preconditions
     /// 1. There should be an entry for the shared key in the key store
     /// 2. There should be an entry for the shared key in the commit log
-
-    // Operation
+    /// Operation
     /// 1. Update a new value for an existing shared key
     /// 2. Delete the shared key
-
-    // Assertions
+    /// Assertions
     /// 1. Keystore should not have the shared key
     /// 2. CommitLog should have only the latest entries:
     ///     a. CommitEntry for key with CommitOp.Delete
@@ -931,12 +900,10 @@ void main() {
     /// Preconditions
     /// 1. There should be an entry for the self key in the key store
     /// 2. There should be an entry for the self key in the commit log
-
-    // Operation
+    /// Operation
     /// 1. Update a new value for an existing self key
     /// 2. Delete the self key
-
-    // Assertions
+    /// Assertions
     /// 1. Keystore should not have the self key
     /// 2. CommitLog should have only the latest entries:
     ///     a. CommitEntry for key with CommitOp.Delete
@@ -993,6 +960,8 @@ void main() {
         MockNotificationServiceImpl();
     RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
     NetworkUtil mockNetworkUtil = MockNetworkUtil();
+    registerFallbackValue(FakeSyncVerbBuilder());
+    registerFallbackValue(FakeUpdateVerbBuilder());
 
     /// Preconditions:
     /// 1. The hive key store has 5 distinct keys with different key types - public key, shared key and self key
@@ -1149,9 +1118,6 @@ void main() {
       LocalSecondary? localSecondary = LocalSecondary(mockAtClient,
           keyStore: TestResources.getHiveKeyStore(TestResources.atsign));
 
-      registerFallbackValue(FakeSyncVerbBuilder());
-      registerFallbackValue(FakeUpdateVerbBuilder());
-
       when(() => mockNetworkUtil.isNetworkAvailable())
           .thenAnswer((_) => Future.value(true));
       when(() => mockAtClient.getLocalSecondary()).thenReturn(localSecondary);
@@ -1220,6 +1186,8 @@ void main() {
         MockNotificationServiceImpl();
     RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
     NetworkUtil mockNetworkUtil = MockNetworkUtil();
+    registerFallbackValue(FakeSyncVerbBuilder());
+    registerFallbackValue(FakeUpdateVerbBuilder());
 
     /// Preconditions:
     /// 1. The local commitId is 5 and hive_seq is also at 5
@@ -1240,9 +1208,6 @@ void main() {
           TestResources.getHiveKeyStore(TestResources.atsign);
       LocalSecondary? localSecondary =
           LocalSecondary(mockAtClient, keyStore: keystore);
-
-      registerFallbackValue(FakeSyncVerbBuilder());
-      registerFallbackValue(FakeUpdateVerbBuilder());
 
       when(() => mockNetworkUtil.isNetworkAvailable())
           .thenAnswer((_) => Future.value(true));
@@ -1518,9 +1483,6 @@ void main() {
       LocalSecondary? localSecondary =
           LocalSecondary(mockAtClient, keyStore: keystore);
 
-      registerFallbackValue(FakeSyncVerbBuilder());
-      registerFallbackValue(FakeUpdateVerbBuilder());
-
       when(() => mockNetworkUtil.isNetworkAvailable())
           .thenAnswer((_) => Future.value(true));
       when(() => mockAtClient.getLocalSecondary()).thenReturn(localSecondary);
@@ -1725,10 +1687,10 @@ void main() {
     /// Preconditions:
     /// 1. There should be no entry for the same key in the key store
     /// 2. There should be no entry for the same key in the commit log
-
+    ///
     /// Operation:
     /// Put a key with TTB say 30 seconds
-
+    ///
     /// Assertions:
     /// 1. Key store should have the key with the value inserted
     /// 2. Assert that the value is returned only after 30seconds
@@ -1784,6 +1746,8 @@ void main() {
         MockNotificationServiceImpl();
     RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
     NetworkUtil mockNetworkUtil = MockNetworkUtil();
+    registerFallbackValue(FakeSyncVerbBuilder());
+    registerFallbackValue(FakeUpdateVerbBuilder());
 
     ///Preconditions:
     /// 1. The local keystore contains following keys
@@ -1975,9 +1939,6 @@ void main() {
       LocalSecondary? localSecondary =
           LocalSecondary(mockAtClient, keyStore: keystore);
       AtClientPreference preference = AtClientPreference()..syncRegex = 'wavi';
-
-      registerFallbackValue(FakeSyncVerbBuilder());
-      registerFallbackValue(FakeUpdateVerbBuilder());
 
       mockAtClient.setPreferences(preference);
       when(() => mockNetworkUtil.isNetworkAvailable())
@@ -2194,9 +2155,11 @@ void main() {
       /// 2. Key store should be in right state
       /// 3. CommitLog should have an entry along with server commit id
     });
+
     test(
         'Verify clients handling of bad keys in deletes from server - Bad key is not present in the local key store',
         () {
+          ///ToDo: assertion not clear (figure out the assertion)
       /// Precondition:
       /// The bad key does not exist in the local secondary
       ///
@@ -2217,6 +2180,8 @@ void main() {
         MockNotificationServiceImpl();
     RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
     NetworkUtil mockNetworkUtil = MockNetworkUtil();
+    registerFallbackValue(FakeSyncVerbBuilder());
+    registerFallbackValue(FakeUpdateVerbBuilder());
 
     /// The test should contain all types of keys - public key, shared key, self key
     ///
@@ -2315,7 +2280,7 @@ void main() {
     });
 
     ///***********************************
-    ///assertions unclear for the test below
+    ///ToDo: assertions unclear for the test below
     ///**********************************
     test(
         'A test to verify when invalid keys are returned in sync response from server',
@@ -2324,10 +2289,10 @@ void main() {
     /// Preconditions:
     /// 1. There should be no entry for the same key in the key store
     /// 2. There should be no entry for the same key in the commit log
-
+    ///
     /// Operation:
     /// CommitOp.UPDATE
-
+    ///
     /// Assertions:
     /// 1. Key store should have the public key with the value inserted
     /// 2. Assert the metadata of the key. "CreatedAt" should be populated with
@@ -2366,7 +2331,7 @@ void main() {
     /// Preconditions:
     /// 1. There should be an entry for the same key in the key store
     /// 2. There should be an entry for the same key in the commit log
-
+    ///
     /// Operation:
     /// Updating the metadata for an existing shared key
     /// CommitOp.UPDATE_META
@@ -2374,7 +2339,7 @@ void main() {
     /// b. Update TTB value to 10 seconds
     /// c. Update TTR
     /// d. Update CCD to TRUE
-
+    ///
     /// Assertions:
     ///1. Assert the metadata of the key. "CreatedAt" field should not be modified and
     /// "UpdatedAt" should be less than now().
@@ -2466,21 +2431,6 @@ void main() {
       /// TODO - Should it throw an exception or have an entry for delete in commit log
     });
 
-    //**************************
-    //Assertion and setup not possible from client side
-    //**************************
-    test('A test to verify sync with regex when server is ahead', () async {
-      /// Preconditions:
-      /// 1. The server commitId is at 15 and local commitId is at 5
-      /// 2. The server has keys with and without matching regex between 5 to 10
-      ///    a. keys with .wavi namespace and keys with .atmosphere namespace
-      /// 3. Initiate sync with regex - ".wavi"
-      ///
-      /// Assertions:
-      /// 1. The keys matching the regex should only sync to local secondary
-      /// 2. isInSync should return after sync completion
-    });
-
     tearDown(() async {
       await TestResources.tearDownLocalStorage();
       resetMocktailState();
@@ -2488,6 +2438,7 @@ void main() {
   });
 
   group('A group of test to verify sync conflict resolution', () {
+
     setUp(() async {
       TestResources.atsign = '@hiro';
       await TestResources.setupLocalStorage(TestResources.atsign);
@@ -2499,6 +2450,8 @@ void main() {
         MockNotificationServiceImpl();
     RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
     NetworkUtil mockNetworkUtil = MockNetworkUtil();
+    registerFallbackValue(FakeSyncVerbBuilder());
+    registerFallbackValue(FakeUpdateVerbBuilder());
 
     /// Preconditions:
     /// 1. The server commit id should be greater than local commit id
@@ -2520,9 +2473,6 @@ void main() {
           notificationService: mockNotificationService,
           remoteSecondary: mockRemoteSecondary) as SyncServiceImpl;
       syncService.syncUtil = SyncUtil(atCommitLog: TestResources.commitLog);
-
-      registerFallbackValue(FakeSyncVerbBuilder());
-      registerFallbackValue(FakeUpdateVerbBuilder());
 
       when(() => mockNetworkUtil.isNetworkAvailable())
           .thenAnswer((_) => Future.value(true));
@@ -2580,7 +2530,9 @@ void main() {
   });
 
   group('Tests to validate how the client and server exchange information', () {
+
     group('A group of test to verify if client and server are in sync', () {
+
       setUp(() async {
         TestResources.atsign = '@jester';
         await TestResources.setupLocalStorage(TestResources.atsign);
@@ -2658,9 +2610,11 @@ void main() {
           MockNotificationServiceImpl();
       RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
       NetworkUtil mockNetworkUtil = MockNetworkUtil();
+      registerFallbackValue(FakeSyncVerbBuilder());
+      registerFallbackValue(FakeUpdateVerbBuilder());
 
       ///***********************************
-      ///unable to assert if sync has happened
+      ///unable to assert if sync has happened for every 3 secs
       ///***********************************
       test(
           'A test to verify sync process triggers at configured values for frequent intervals',
@@ -2692,6 +2646,7 @@ void main() {
       /// Preconditions:
       /// 1. Network is unavailable.
       /// 2. The sync process is yet to start
+      ///
       /// Assertions:
       /// Assert that sync process is not started till the network is back
       test(
@@ -2708,9 +2663,6 @@ void main() {
 
         syncService.syncUtil = SyncUtil(atCommitLog: TestResources.commitLog);
         syncService.networkUtil = mockNetworkUtil;
-
-        registerFallbackValue(FakeSyncVerbBuilder());
-        registerFallbackValue(FakeUpdateVerbBuilder());
 
         when(() => mockNetworkUtil.isNetworkAvailable())
             .thenAnswer((_) => Future.value(false));
@@ -2778,7 +2730,7 @@ void main() {
 
       /// Preconditions:
       /// 1. There are no uncommitted entries/ requests.
-
+      ///
       /// Assertions:
       /// Assert that sync process is not started till the syncRequestThreshold is met
       test(
@@ -2787,9 +2739,6 @@ void main() {
         //------------------------------- Setup -------------------------------
         LocalSecondary localSecondary = LocalSecondary(mockAtClient,
             keyStore: TestResources.getHiveKeyStore(TestResources.atsign));
-
-        registerFallbackValue(FakeSyncVerbBuilder());
-        registerFallbackValue(FakeUpdateVerbBuilder());
 
         SyncServiceImpl syncService = await SyncServiceImpl.create(mockAtClient,
             atClientManager: mockAtClientManager,
@@ -2822,6 +2771,7 @@ void main() {
       /// Preconditions:
       /// 1. The _syncRequestThreshold is set to 3.
       /// 2. The sync process is yet to start and there are no requests in the queue
+      ///
       /// Assertions:
       /// Assert that sync process is not started before the queue size is reached
       test(
@@ -2836,9 +2786,6 @@ void main() {
             notificationService: mockNotificationService,
             remoteSecondary: mockRemoteSecondary) as SyncServiceImpl;
         syncService.syncUtil = SyncUtil(atCommitLog: TestResources.commitLog);
-
-        registerFallbackValue(FakeSyncVerbBuilder());
-        registerFallbackValue(FakeUpdateVerbBuilder());
 
         when(() => mockNetworkUtil.isNetworkAvailable())
             .thenAnswer((_) => Future.value(true));
@@ -2897,6 +2844,7 @@ void main() {
     });
 
     group('A group of tests to verify isSyncInProgress flag', () {
+
       setUp(() async {
         TestResources.atsign = '@levi';
         await TestResources.setupLocalStorage(TestResources.atsign);
@@ -2908,6 +2856,8 @@ void main() {
           MockNotificationServiceImpl();
       RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
       NetworkUtil mockNetworkUtil = MockNetworkUtil();
+      registerFallbackValue(FakeSyncVerbBuilder());
+      registerFallbackValue(FakeUpdateVerbBuilder());
 
       /// Preconditions:
       /// 1. Initially the isSyncInProgress is set to false.
@@ -2924,9 +2874,6 @@ void main() {
         reset(mockRemoteSecondary);
         LocalSecondary? localSecondary = LocalSecondary(mockAtClient,
             keyStore: TestResources.getHiveKeyStore(TestResources.atsign));
-
-        registerFallbackValue(FakeSyncVerbBuilder());
-        registerFallbackValue(FakeUpdateVerbBuilder());
 
         when(() => mockNetworkUtil.isNetworkAvailable())
             .thenAnswer((_) => Future.value(true));
@@ -3061,6 +3008,7 @@ void main() {
     group(
         'A group of tests to validate sync command - sync server changes to client',
         () {
+
       setUp(() async {
         TestResources.atsign = '@nadia';
         await TestResources.setupLocalStorage(TestResources.atsign);
@@ -3072,6 +3020,8 @@ void main() {
           MockNotificationServiceImpl();
       RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
       NetworkUtil mockNetworkUtil = MockNetworkUtil();
+      registerFallbackValue(FakeSyncVerbBuilder());
+      registerFallbackValue(FakeUpdateVerbBuilder());
 
       /// Preconditions:
       /// 1. The localCommitId is at commitId 5
@@ -3101,8 +3051,6 @@ void main() {
 
         syncService.networkUtil = mockNetworkUtil;
         syncService.syncUtil = SyncUtil(atCommitLog: TestResources.commitLog);
-        registerFallbackValue(FakeSyncVerbBuilder());
-        registerFallbackValue(FakeUpdateVerbBuilder());
 
         when(() => mockNetworkUtil.isNetworkAvailable())
             .thenAnswer((_) => Future.value(true));
@@ -3192,6 +3140,7 @@ void main() {
     });
 
     group('A group of test to verify onDone callback', () {
+
       setUp(() async {
         TestResources.atsign = '@oreo';
         await TestResources.setupLocalStorage(TestResources.atsign);
@@ -3203,6 +3152,8 @@ void main() {
           MockNotificationServiceImpl();
       RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
       NetworkUtil mockNetworkUtil = MockNetworkUtil();
+      registerFallbackValue(FakeSyncVerbBuilder());
+      registerFallbackValue(FakeUpdateVerbBuilder());
 
       /// Preconditions:
       /// 1. The serverCommitId is greater than localCommitId
@@ -3229,8 +3180,6 @@ void main() {
             remoteSecondary: mockRemoteSecondary) as SyncServiceImpl;
 
         syncService.syncUtil = SyncUtil(atCommitLog: TestResources.commitLog);
-        registerFallbackValue(FakeSyncVerbBuilder());
-        registerFallbackValue(FakeUpdateVerbBuilder());
 
         when(() => mockNetworkUtil.isNetworkAvailable())
             .thenAnswer((_) => Future.value(true));
@@ -3330,6 +3279,7 @@ void main() {
     });
 
     group('A group of test on sync progress call back', () {
+
       setUp(() async {
         TestResources.atsign = '@poland';
         await TestResources.setupLocalStorage(TestResources.atsign);
@@ -3341,6 +3291,8 @@ void main() {
           MockNotificationServiceImpl();
       RemoteSecondary mockRemoteSecondary = MockRemoteSecondary();
       MockNetworkUtil mockNetworkUtil = MockNetworkUtil();
+      registerFallbackValue(FakeSyncVerbBuilder());
+      registerFallbackValue(FakeUpdateVerbBuilder());
 
       /// Preconditions:
       /// 1. Create a class that extends "SyncProgressListener" and override "onSyncProgressEvent" method
@@ -3348,7 +3300,6 @@ void main() {
       /// 3. Local keystore has previously synced entries and uncommitted entries
       /// 4. The default value for fields in SyncProgressListener:
       ///     a. isInitialSync is set to false
-      ///
       ///
       /// Assertions:
       /// 1. Assert on the following fields in SyncProgress:
@@ -3376,8 +3327,6 @@ void main() {
 
         syncService.networkUtil = mockNetworkUtil;
         syncService.syncUtil = SyncUtil(atCommitLog: TestResources.commitLog);
-        registerFallbackValue(FakeSyncVerbBuilder());
-        registerFallbackValue(FakeUpdateVerbBuilder());
 
         when(() => mockNetworkUtil.isNetworkAvailable())
             .thenAnswer((_) => Future.value(true));
@@ -3483,8 +3432,6 @@ void main() {
 
         syncService.networkUtil = mockNetworkUtil;
         syncService.syncUtil = SyncUtil(atCommitLog: TestResources.commitLog);
-        registerFallbackValue(FakeSyncVerbBuilder());
-        registerFallbackValue(FakeUpdateVerbBuilder());
 
         when(() => mockNetworkUtil.isNetworkAvailable())
             .thenAnswer((_) => Future.value(true));
