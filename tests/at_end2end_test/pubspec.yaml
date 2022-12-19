@@ -12,6 +12,23 @@ dependencies:
   at_client:
     path: ../../packages/at_client
 
+dependency_overrides:
+  at_commons:
+    git:
+      url: https://github.com/atsign-foundation/at_tools.git
+      path: packages/at_commons
+      ref: compaction_changes
+  at_persistence_secondary_server:
+    git:
+      url: https://github.com/atsign-foundation/at_server.git
+      path: packages/at_persistence_secondary_server
+      ref: at_persistence_secondary_compaction_changes
+  at_persistence_spec:
+    git:
+      url: https://github.com/atsign-foundation/at_server.git
+      path: packages/at_persistence_spec
+      ref: at_persistence_spec_compaction_changes
+
 dev_dependencies:
   pedantic: ^1.11.1
   test: ^1.21.4

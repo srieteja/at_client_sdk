@@ -37,6 +37,23 @@ dependencies:
   at_utils: ^3.0.11
   meta: ^1.8.0
 
+dependency_overrides:
+  at_commons:
+    git:
+      url: https://github.com/atsign-foundation/at_tools.git
+      path: packages/at_commons
+      ref: compaction_changes
+  at_persistence_secondary_server:
+    git:
+      url: https://github.com/atsign-foundation/at_server.git
+      path: packages/at_persistence_secondary_server
+      ref: at_persistence_secondary_compaction_changes
+  at_persistence_spec:
+    git:
+      url: https://github.com/atsign-foundation/at_server.git
+      path: packages/at_persistence_spec
+      ref: at_persistence_spec_compaction_changes
+
 dev_dependencies:
   lints: ^2.0.0
   test: ^1.21.4
